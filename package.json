@@ -9,10 +9,10 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint:eslint": "eslint . --ext .js,.vue,.ts",
-    "lint:stylelint": "stylelint '**/*.{vue,css,scss,ts}'",
-    "format:prettier": "prettier --write '**/*.{js,vue,css,scss,ts}'",
+    "lint:stylelint": "stylelint 'assets/**/*.scss' 'components/**/*.vue' 'layouts/**/*.vue' 'pages/**/*.vue'",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
-    "format": "npm run format:prettier"
+    "format:prettier": "prettier --write '**/*.{js,vue,css,scss,ts}'",
+    "lint:fix": "eslint --fix . --ext .js,.vue,.ts"
   },
   "dependencies": {
     "@nuxt/ui": "^2.14.2",
@@ -30,7 +30,11 @@
     "eslint-plugin-vue": "^9.23.0",
     "prettier": "^3.2.5",
     "stylelint": "^16.2.1",
+    "stylelint-config-css-modules": "^4.4.0",
+    "stylelint-config-recommended-scss": "^14.0.0",
     "stylelint-config-standard": "^36.0.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.2.1",
     "vue-eslint-parser": "^9.4.2"
   }
 }

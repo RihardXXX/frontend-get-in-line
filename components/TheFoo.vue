@@ -1,1 +1,1 @@
-<template><div>hello</div></template>
+<template><div>Foo Component</div></template>

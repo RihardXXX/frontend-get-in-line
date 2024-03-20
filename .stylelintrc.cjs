@@ -1,13 +1,27 @@
 module.exports = {
+    // "extends": [
+    //     "stylelint-config-standard",
+    //     "stylelint-config-css-modules"
+    // ],
+    // "plugins": [
+    //     "stylelint-scss",
+    //     "stylelint-order"
+    // ],
     "extends": [
         "stylelint-config-standard",
-        "stylelint-config-css-modules"
+        "stylelint-config-css-modules",
+        "stylelint-config-recommended-scss"
     ],
     "plugins": [
-        "stylelint-scss",
         "stylelint-order"
     ],
     "rules": {
+        "order/order": [
+            "custom-properties",
+            "declarations"
+        ],
+        "order/properties-alphabetical-order": true,
+
         "at-rule-no-unknown": null,
         "scss/at-rule-no-unknown": true,
         "at-rule-empty-line-before": [
