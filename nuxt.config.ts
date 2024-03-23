@@ -4,5 +4,9 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     '@nuxtjs/stylelint-module'
+  ],
+  css: [
+    '~/assets/scss/bundle.scss'
   ]
+
 })
