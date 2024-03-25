@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TheLanding from '~/components/TheLanding.vue'
 // const layout = ref<'default' | 'auth'>('default')
 // function enableCustomLayout () {
 //   if (layout.value === 'default') {
@@ -12,18 +13,5 @@
 </script>
 
 <template>
-  <div>
-    <br />
-    <h1>Index Page</h1>
-    <!--    <UButton-->
-    <!--      icon="i-heroicons-pencil-square"-->
-    <!--      size="lg"-->
-    <!--      color="fuchsia"-->
-    <!--      variant="outline"-->
-    <!--      label="Button"-->
-    <!--      :trailing="false"-->
-    <!--      @click="enableCustomLayout"-->
-    <!--    />-->
-    <TheFoo />
-  </div>
+  <TheLanding />
 </template>

@@ -1,6 +1,5 @@
 <template>
   <div class="h-full">
-    <p>auth layout</p>
     <slot />
     <UTabs
       :items="items"
