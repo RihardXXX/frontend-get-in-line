@@ -1,13 +1,7 @@
 <template>
   <div class="h-full">
     <slot />
-    <UTabs
-      :items="items"
-      :default-index="1"
-      @change="onChange"
-      :ui="ui"
-      class="absolute bottom-0 left-0 w-full"
-    />
+    <UTabs :items="items" @change="onChange" :ui="ui" class="fixed bottom-0 left-0 w-full" />
   </div>
 </template>
 

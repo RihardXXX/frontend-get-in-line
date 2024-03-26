@@ -1,19 +1,21 @@
 <template>
-  <UDashboardCard
-    :title="title"
-    :description="description"
-    icon="i-heroicons-face-smile"
-    :ui="uiDashboard"
-  >
-  </UDashboardCard>
+  <div class="pb-20">
+    <UDashboardCard
+      :title="title"
+      :description="description"
+      icon="i-heroicons-face-smile"
+      :ui="uiDashboard"
+    >
+    </UDashboardCard>
 
-  <UNavigationAccordion
-    :links="links"
-    multiple
-    :default-open="false"
-    :ui="uiNavigationAccordion"
-    :class="$style.wrapper"
-  />
+    <UNavigationAccordion
+      :links="links"
+      multiple
+      :default-open="true"
+      :ui="uiNavigationAccordion"
+      :class="$style.wrapper"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -39,6 +41,7 @@ const description =
   'Вы перестанете опаздывать на встречи, а Ваш партнер будет рад, что вы пришли вовремя'
 // ======================
 
+// ===== UNavigationAccordion ====
 const links = [
   {
     label: '1. Пройдите регистрацию или авторизуйтесь',
@@ -58,57 +61,57 @@ const links = [
     ]
   },
   {
-    label: 'Найдите пользователя в поиске или по QRCODE',
+    label: '2. Найдите пользователя в поиске или по QRCODE',
     icon: 'i-heroicons-finger-print-20-solid',
     children: [
       {
-        label: 'Introduction'
+        label: '2.1. Перейдите в раздел поиска после регистрации'
       },
       {
-        label: 'Installation'
+        label: '2.2. Найдите пользователя вводя имя или по QRCODE'
+      },
+      {
+        label: '2.3. Перейдите на его страницу'
       }
     ]
   },
   {
-    label: 'Выберите дату и время встречи',
+    label: '3. Выберите дату и время встречи',
     icon: 'i-heroicons-clock',
     children: [
       {
-        label: 'Introduction'
+        label: '3.1. Выберите дату и время, в которое хотите явится к пользователю'
       },
       {
-        label: 'Installation'
+        label: '3.2. Отправьте запрос на встречу'
       }
     ]
   },
   {
-    label: 'Отправьте запрос на встречу партнеру',
+    label: '4. Дождитесь ответа',
     icon: 'i-heroicons-pencil-square-solid',
     children: [
       {
-        label: 'Introduction'
-      },
-      {
-        label: 'Installation'
+        label: '4.1. Проверьте статус встречи, одобрена ли она со стороны пользователя'
       }
     ]
   },
   {
-    label: 'Дождитесь ответа-одобрения от партнера',
+    label: '5. Дождитесь ответа-одобрения от партнера',
     icon: 'i-heroicons-hand-thumb-up',
     children: [
       {
-        label: 'Introduction'
+        label: '5.1. После одобрения встречи от партнера, можете смело идти на встречу'
       },
       {
-        label: 'Installation'
+        label: '5.2. При встрече можете показать партнеру QRCODE встречи'
       }
     ]
   }
 ]
 
 const uiNavigationAccordion = {
-  wrapper: 'mt-8 p-1 text-slate-900',
+  wrapper: 'mt-8 p-2 text-slate-900 overflow-auto gap-4',
   container: 'space-y-3',
   item: {
     padding: '',
@@ -124,15 +127,15 @@ const uiNavigationAccordion = {
     },
     trailingIcon: {
       name: 'i-heroicons-chevron-down-20-solid',
-      base: 'w-5 h-5 ms-auto transform transition-transform duration-200 flex-shrink-0 mr-1.5',
-      active: 'text-gray-100 dark:text-gray-100 text-slate-900',
-      inactive:
-        'text-gray-500 dark:text-gray-800 group-hover:text-gray-700 dark:group-hover:text-gray-200 -rotate-90'
+      base: 'w-20 h-20 ms-auto transform transition-transform duration-200 flex-shrink-0 mr-1.5',
+      active: 'text-blue-950 dark:text-blue-950 text-slate-900',
+      inactive: 'text-blue-950 dark:text-blue-950 dark:group-hover:text-blue-950 -rotate-90'
     },
-    label: 'text-3xl font-semibold truncate text-slate-950 text-wrap'
+    label: 'text-3xl font-semibold truncate text-slate-950 text-wrap text-left'
   },
   tree: 'border-l-2 border-gray-200 dark:border-gray-800 text-slate-900'
 }
+// ======================
 </script>
 
 <style lang="scss" module>
@@ -145,6 +148,12 @@ const uiNavigationAccordion = {
         text-wrap: wrap;
         font-weight: 500;
         opacity: 0.8;
+        text-align: left;
+        margin-bottom: 0.5rem;
+
+        &:hover {
+          color: #1e293b;
+        }
       }
     }
   }
