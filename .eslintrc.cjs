@@ -33,6 +33,7 @@ module.exports = {
         setPageLayout: true,
         computed: true,
         watch: true,
+        reactive: true,
     },
     overrides: [
         {

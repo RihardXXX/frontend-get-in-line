@@ -6,21 +6,27 @@
 </template>
 
 <script setup lang="ts">
+const router = useRouter()
+
 const items = [
   {
     label: 'Регистрация',
-    value: 'register'
+    value: 'registration'
   },
   {
     label: 'Авторизация',
-    value: 'auth'
+    value: 'authorization'
   }
 ]
 
-function onChange(index: number) {
-  const item = items[index]
+async function onChange(index: number) {
+  const page = items[index]
 
-  console.log('items value', item.value)
+  if (!page) {
+    return
+  }
+  console.log('items value', page.value)
+  await navigateTo(page.value)
 }
 
 const ui = {
