@@ -1,7 +1,13 @@
 <template>
   <div class="h-full">
     <slot />
-    <UTabs :items="items" @change="onChange" :ui="ui" class="fixed bottom-0 left-0 w-full" />
+    <UTabs
+      :items="items"
+      :default-index="0"
+      @change="onChange"
+      :ui="ui"
+      class="fixed bottom-0 left-0 w-full p-0"
+    />
   </div>
 </template>
 
@@ -10,16 +16,21 @@ const router = useRouter()
 
 const items = [
   {
-    label: 'Регистрация',
+    label: 'главная',
+    value: ''
+  },
+  {
+    label: 'регистрация',
     value: 'registration'
   },
   {
-    label: 'Авторизация',
+    label: 'авторизация',
     value: 'authorization'
   }
 ]
 
 async function onChange(index: number) {
+  console.log('onchange', index)
   const page = items[index]
 
   if (!page) {
@@ -51,8 +62,8 @@ const ui = {
     tab: {
       base: 'relative inline-flex items-center justify-center flex-shrink-0 w-full ui-focus-visible:outline-0 ui-focus-visible:ring-2 ui-focus-visible:ring-primary-500 dark:ui-focus-visible:ring-primary-400 ui-not-focus-visible:outline-none focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors duration-200 ease-out',
       background: '',
-      active: 'text-gray-900 dark:text-white',
-      inactive: 'text-gray-500 dark:text-gray-400',
+      active: 'text-gray-900 dark:text-white pl-1 pr-1',
+      inactive: 'text-gray-500 dark:text-gray-400 pl-1 pr-1',
       height: 'h-10',
       padding: 'px-10',
       size: 'text-3xl',

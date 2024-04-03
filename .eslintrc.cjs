@@ -34,6 +34,7 @@ module.exports = {
         computed: true,
         watch: true,
         reactive: true,
+        toRaw: true,
     },
     overrides: [
         {
