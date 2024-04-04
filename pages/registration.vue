@@ -63,6 +63,9 @@
 <script lang="ts" setup>
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '#ui/types'
+import { useFooterNotAuthStore } from '~/store/footer-not-auth'
+
+const { changeTabs, setDisabledTab } = useFooterNotAuthStore()
 
 //  name, email, password, phone
 
@@ -92,20 +95,21 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
   // console.log('proxy', event.data)
   // console.log('original refs', toRef(event.data).value)
   isLoading.value = true
+  setDisabledTab(true)
 
   const data = toRaw(event.data)
   console.log('data: ', data)
 
   setTimeout(() => {
     isLoading.value = false
+    setDisabledTab(false)
     notificationSuccess.value = true
   }, 3000)
 }
 
 async function backToHome () {
-  console.log('router home')
   // через пинию вызывать таб
-  await navigateTo('/')
+  await changeTabs(0)
 }
 </script>
 

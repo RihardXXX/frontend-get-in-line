@@ -2,43 +2,27 @@
   <div class="h-full">
     <slot />
     <UTabs
-      :items="items"
-      :default-index="0"
-      @change="onChange"
+      :items="tabs"
+      :modelValue="modelValue"
+      @change="changeTabs"
       :ui="ui"
-      class="fixed bottom-0 left-0 w-full p-0"
+      :class="[
+        'fixed bottom-0 left-0 w-full p-0',
+        {
+          'pointer-events-none opacity-80': isDisabled
+        }
+      ]"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
+import { useFooterNotAuthStore } from '~/store/footer-not-auth'
+import { storeToRefs } from 'pinia'
 
-const items = [
-  {
-    label: 'главная',
-    value: ''
-  },
-  {
-    label: 'регистрация',
-    value: 'registration'
-  },
-  {
-    label: 'авторизация',
-    value: 'authorization'
-  }
-]
-
-async function onChange(index: number) {
-  console.log('onchange', index)
-  const page = items[index]
-
-  if (!page) {
-    return
-  }
-  console.log('items value', page.value)
-  await navigateTo(page.value)
-}
+const footerNotAuthStore = useFooterNotAuthStore()
+const { changeTabs } = footerNotAuthStore
+const { tabs, modelValue, isDisabled } = storeToRefs(footerNotAuthStore)
 
 const ui = {
   wrapper: 'relative space-y-2',
