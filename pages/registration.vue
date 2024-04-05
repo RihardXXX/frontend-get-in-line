@@ -64,13 +64,16 @@
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '#ui/types'
 import { useFooterNotAuthStore } from '~/store/footer-not-auth'
+import { useUrls } from '~/composables/useUrls'
 
+// переключение нижнего активного элемента футера
 const { changeTabs, setDisabledTab } = useFooterNotAuthStore()
 
 //  name, email, password, phone
 
 const textRequired = 'поле является обязательным'
 
+// схема валидации в библиотеке
 const schema = object({
   name: string().trim().min(5, 'Ваше имя должно быть больше 5 символов').required(textRequired),
   email: string().trim().email('неверный формат почты').required(textRequired),
@@ -89,6 +92,11 @@ const state = reactive({
 
 const isLoading = ref(false)
 const notificationSuccess = ref<boolean>(false)
+
+// пути для запросов
+const { authUrls } = useUrls()
+
+console.log(authUrls.value.registration)
 
 async function onSubmit (event: FormSubmitEvent<Schema>) {
   // Do something with event.data
