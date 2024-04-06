@@ -96,23 +96,33 @@ const notificationSuccess = ref<boolean>(false)
 // пути для запросов
 const { authUrls } = useUrls()
 
-console.log(authUrls.value.registration)
-
 async function onSubmit (event: FormSubmitEvent<Schema>) {
-  // Do something with event.data
-  // console.log('proxy', event.data)
-  // console.log('original refs', toRef(event.data).value)
+  const data = toRaw(event.data)
+
+  const url = authUrls.value.registration
   isLoading.value = true
   setDisabledTab(true)
 
-  const data = toRaw(event.data)
-  console.log('data: ', data)
+  try {
+    const res = await $fetch(url, {
+      method: 'POST',
+      body: {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        phone: data.password
+      }
+    })
 
-  setTimeout(() => {
+    console.log('res: ', res)
+    // для показа уведомления
+    notificationSuccess.value = true
+  } catch (e) {
+    console.error('Error Page Registration method submit: ', e)
+  } finally {
     isLoading.value = false
     setDisabledTab(false)
-    notificationSuccess.value = true
-  }, 3000)
+  }
 }
 
 async function backToHome () {

@@ -35,6 +35,7 @@ module.exports = {
         watch: true,
         reactive: true,
         toRaw: true,
+        $fetch: true,
     },
     overrides: [
         {
@@ -42,6 +43,7 @@ module.exports = {
             rules: {
                 // Отключаем правило vue/multi-word-component-names для файлов в папке pages
                 'vue/multi-word-component-names': 'off',
+                'no-console': 'off',
             },
         },
     ],

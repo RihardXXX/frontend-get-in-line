@@ -25,8 +25,8 @@ interface IUrls {
 export const useUrls = () => {
   const config = useRuntimeConfig()
 
-  // протокол и домен бэка
-  const baseURL = config.public.baseURL || '/'
+  // в режиме dev добавляем префикс сервер
+  const baseURL = config.public.isDevelopment ? '/server' : '/'
 
   // ветки путей
   const authBase = '/auth'
