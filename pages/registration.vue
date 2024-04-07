@@ -43,8 +43,7 @@
       Регистрация прошла успешно
     </h1>
     <p class="mt-10 text-3xl text-center">
-      Пройдите пожалуйста в свою электронную почту и подтвердите регистрацию кликнув на ссылку в
-      письме, которое Вам будет отправлено
+      {{ successMessage }}
     </p>
 
     <UButton
@@ -68,6 +67,9 @@ import { useUrls } from '~/composables/useUrls'
 
 // переключение нижнего активного элемента футера
 const { changeTabs, setDisabledTab } = useFooterNotAuthStore()
+
+// для выдачи сообщений об ошибке
+const toast = useToast()
 
 //  name, email, password, phone
 
@@ -96,6 +98,9 @@ const notificationSuccess = ref<boolean>(false)
 // пути для запросов
 const { authUrls } = useUrls()
 
+// тест при успешной регистрации
+const successMessage = ref('')
+
 async function onSubmit (event: FormSubmitEvent<Schema>) {
   const data = toRaw(event.data)
 
@@ -104,7 +109,7 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
   setDisabledTab(true)
 
   try {
-    const res = await $fetch(url, {
+    const res = await $fetch<{ message: string }>(url, {
       method: 'POST',
       body: {
         name: data.name,
@@ -117,8 +122,14 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
     console.log('res: ', res)
     // для показа уведомления
     notificationSuccess.value = true
+    successMessage.value = res.message
   } catch (e) {
-    console.error('Error Page Registration method submit: ', e)
+    toast.add({
+      title: 'Внимание',
+      description: e.data.message,
+      icon: 'i-octicon-desktop-download-24',
+      timeout: 5000
+    })
   } finally {
     isLoading.value = false
     setDisabledTab(false)

@@ -36,6 +36,7 @@ module.exports = {
         reactive: true,
         toRaw: true,
         $fetch: true,
+        useToast: true,
     },
     overrides: [
         {
