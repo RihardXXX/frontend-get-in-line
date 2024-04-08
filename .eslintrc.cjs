@@ -23,6 +23,7 @@ module.exports = {
     rules: {
         '@typescript-eslint/no-unused-vars': 'error',
         'vue/html-self-closing': 'off',
+        "vue/no-multiple-template-root": 0
     },
     globals: {
         // Ваши глобальные переменные здесь

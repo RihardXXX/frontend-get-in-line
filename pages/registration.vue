@@ -101,6 +101,14 @@ const { authUrls } = useUrls()
 // тест при успешной регистрации
 const successMessage = ref('')
 
+interface IMessage {
+  message: string
+}
+
+interface IErrorResponse extends Error {
+  data: IMessage
+}
+
 async function onSubmit (event: FormSubmitEvent<Schema>) {
   const data = toRaw(event.data)
 
@@ -126,7 +134,7 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
   } catch (e) {
     toast.add({
       title: 'Внимание',
-      description: e.data.message,
+      description: (e as IErrorResponse).data.message,
       icon: 'i-octicon-desktop-download-24',
       timeout: 5000
     })
