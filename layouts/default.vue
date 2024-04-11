@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p>default</p>
     <slot />
+    <p>default</p>
   </div>
 </template>
 <script setup lang="ts"></script>

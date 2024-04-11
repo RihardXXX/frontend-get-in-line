@@ -10,6 +10,7 @@
 <script setup lang="ts">
 // You might choose this based on an API call or logged-in status
 import TheBaseNotifications from '~/components/ui/TheBaseNotifications.vue'
+import { useChangeLayouts } from '~/store/change-layouts'
 
-const layout = 'auth'
+const { layout } = useChangeLayouts()
 </script>

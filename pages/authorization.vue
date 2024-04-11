@@ -77,6 +77,14 @@ import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '#ui/types'
 import { useUrls } from '~/composables/useUrls'
 import { useFooterNotAuthStore } from '~/store/footer-not-auth'
+import { useChangeLayouts } from '~/store/change-layouts'
+import { useAuthInfo } from '~/store/auth-info'
+
+// смена шаблона
+const { changeLayout } = useChangeLayouts()
+
+// Получение данных о пользователе
+const { fetchUserInfo } = useAuthInfo()
 
 // disabled footer
 const { setDisabledTab } = useFooterNotAuthStore()
@@ -187,6 +195,7 @@ async function onSubmitOtp (event: FormSubmitEvent<SchemaOtp>) {
     // для показа уведомления
     successMessage.value = res.message
     step.value = 3
+    await fetchUserInfo()
   } catch (e) {
     toast.add({
       title: 'Внимание',
